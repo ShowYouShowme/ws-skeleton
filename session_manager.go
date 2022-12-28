@@ -64,6 +64,9 @@ func (receiver *SessionManager) onError(addr string) {
 	receiver.c4 <- addr
 }
 
+// 在这里加入定时器的功能
+// 也可以另外起一个nodejs的服务,先http请求它,将timeout和handlerID发过去,然后nodejs服务超时后调用golang服务,以此实现定时器的功能
+// 或者每次启动一个go 协程, 超时后协程给本线程的某个channel发送消息
 func (receiver *SessionManager) run() {
 	for {
 		select {
